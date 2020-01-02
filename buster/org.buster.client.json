@@ -1,0 +1,9 @@
+{
+  "name": "org.buster.client",
+  "description": "Buster",
+  "path": "/Users/hanlin/.local/opt/buster/buster-client",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://mpbjkejclgfgadiemmefgebjfooflfhl/"
+  ]
+}

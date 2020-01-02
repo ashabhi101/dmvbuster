@@ -12,7 +12,7 @@ class Scraper:
 
         #--- ChromeDriver options
         options = webdriver.ChromeOptions()
-        options.add_argument('--load-extension=~/Downloads/buster')
+        options.add_argument('--load-extension=buster')
         browser = webdriver.Chrome('./chromedriver', chrome_options=options)
         #-------
 
