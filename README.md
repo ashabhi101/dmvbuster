@@ -84,4 +84,4 @@ Occasionally, there will be a Selenium error not covered by these three cases. I
 * Open an issue if you are encountering difficulties and I will do my best to help you solve it.
 
 #### Usage
-This should only be used for personal purposes, not commercial activities. This program's intent is to help individual people book more convenient appointments that other people have canceled. 
+This should only be used for personal purposes, not commercial activities. This program's intent is to help individual people book more convenient appointments that other people have canceled. This is not a hack; it simply automates the manual process of checking offices.
