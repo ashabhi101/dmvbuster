@@ -17,6 +17,8 @@ Features:
 
 
 ## Installation and Usage
+Note: This has only been tested on Mac
+
 1. Grab your local copy.
 ```
 git clone https://github.com/jerrylin3321/dmvbuster.git
