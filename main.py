@@ -1,5 +1,6 @@
 from scraper import Scraper
 from settings import LOCATIONS
+from settings import PROFILE
 from bot import Bot
 from database import DB
 from logger import Logger
@@ -39,7 +40,7 @@ class App:
                     self.logger.log("Appointment already exists in DB.")
             else:
                 self.logger.log("Invalid appointment object returned")
-            time.sleep(120) # sleep between each appt
+            time.sleep(PROFILE['sleepBetweenAppt']) # sleep between each appt
 
     def _is_daytime(self):
         curr_hour = datetime.now().hour

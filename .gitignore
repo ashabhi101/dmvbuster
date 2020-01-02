@@ -5,6 +5,5 @@ creds.py
 __pycache__/
 *.pyc
 logs/
-settings.py
 real-settings.py
 
