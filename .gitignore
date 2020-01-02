@@ -1,0 +1,8 @@
+*.log
+chromedriver
+.DS_Store
+creds.py
+__pycache__/
+*.pyc
+logs/
+settings.py
