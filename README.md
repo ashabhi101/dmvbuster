@@ -1,58 +1,57 @@
-# Stalk the DMV - never make public, i still feel there's sensitive info
+# DMV Buster
+
+This is a fork of [Stalk-the-DMV](https://github.com/thisisandreeeee/stalk-the-DMV). 
 ![demo](https://raw.githubusercontent.com/thisisandreeeee/stalk-the-DMV/master/demo.gif)
 
-A good friend of mine, Juho, casually mentioned how much of a pain it was to get an appointment for a driving test at the DMV. The only available appointments were in 3 months, and although it was possible to secure an earlier appointment if someone else deleted theirs - it was way too tedious (and mundane) to manually check the DMV page ever so often.
+I'm a college student trying to grab an appointment for a behind-the-wheel test. Unfortunately, appointments are literally booked out three months in advance. There are occasional openings when someone cancels, but these are hard to find and usually snatched up instantly. I went looking for bots online to automate this appointment search for me, but none of them work ever since the DMV deployed a ReCaptcha on the appointment finder page. 
 
-Enter, [Selenium](http://selenium-python.readthedocs.io/).
+To solve this, I integrated the automated captcha-solving extension [Buster](https://github.com/dessant/buster) with [Stalk-the-DMV](https://github.com/thisisandreeeee/stalk-the-DMV), and added an automatic appointment scheduling feature. This bot will search through a list of DMV offices, logging down available appointments, and if an appointment is within a specified number of days, it'll automatically schedule it for you.
 
-We originally wanted to programmatically send POST requests to their web form and scrape the response for any available appointments, but this proved tricky as the DMV page was being dynamically generated with Javascript. Thankfully, Selenium (originally a web testing tool), provides us with an amazing set of tools to interact with their web page through a headless browser, as though the program is a real person.
+Features:
+* Bypasses reCaptcha
+* If the appointment is within `numDays` (you can adjust this in `settings.py`), the bot will schedule the appointment for you.
+* Saves an appointment confirmation screenshot as `appt_confirmation.png` and registers your phone number for appointment notifications from the DMV.
+* Found appointments will be stored in an SQLite databse if it's not already stored in the database and sent to your Slack channel. 
+* Moreover, the bot will recognize if the earliest appointment for a specific DMV office is within 14 days, and tag the users within the slack channel to bring the information immediately to attention. 
+
 
 ## Installation and Usage
 Grab your local copy.
 ```
-git clone https://github.com/thisisandreeeee/stalk-the-DMV.git
+git clone https://github.com/jerrylin3321/dmvbuster.git
 ```
-Install the dependencies, which includes python libraries and phantomjs.
+Install the dependencies, which includes python libraries.
 ```
 pip install -r requirements.txt
-
-# On OSX
-brew install phantomjs
-
-# On Linux
-cd ~
-export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
-wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
-sudo tar xvjf $PHANTOM_JS.tar.bz2
-sudo mv $PHANTOM_JS /usr/local/share
-sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
 ```
-Obtain a [slack token](https://api.slack.com/docs/oauth-test-tokens). Then, create a config file - this should be kept hidden! In the current directory, enter the following:
+Install ChromeDriver from [here](http://chromedriver.storage.googleapis.com/2.23/chromedriver_mac64.zip). Move the file to the same directory as `main.py` and unzip it. 
+
+Obtain a [slack token](https://api.slack.com/docs/oauth-test-tokens). I would create a new Slack workspace, and inside, create a channel called `#dmv` for this. Then, create a config file - this should be kept hidden! In the current directory, enter the following:
 ```
 echo "SLACK_TOKEN='your-token-here'" >> creds.py
 ```
 Don't forget to replace the string above with your own slack token. When that is done, open `settings.py` and update it with your information.
 ```python
 SLACK_CHANNEL = '#dmv' # this should be the slack channel which you want to send messages to
-URL = 'https://www.dmv.ca.gov/wasapp/foa/findDriveTest.do' # the url for the DMV web form
-LOCATIONS = {
-    'San Mateo': '130', # the office ID obtained by inspecting the xpath, this is what selenium uses to identify the correct option
-    'Redwood City': '109',
-    'San Jose': '125',
-    'Daly City': '28'
-}
+URL = 'https://www.dmv.ca.gov/wasapp/foa/driveTest.do' # the url for the DMV web form
+
+LOCATIONS = ['WATSONVILLE', 'GILROY', 'CAPITOLA', 'HOLLISTER', 'SALINAS', 'SEASIDE', "LOS BANOS", 'MODESTO']
+#Names must exactly match office names in the drop-down menu
+
 PROFILE = {
-    'first_name': 'ANDRE',
-    'last_name': 'TAN',
-    'mm': '09',
-    'dd': '28',
-    'yyyy': '1993',
-    'dl_number': 'your-dl-number-here',
-    'tel_prefix': 'your-area-code-here',
-    'tel_suffix1': 'your-prefix-here',
-    'tel_suffix2': 'your-line-number-here'
-    # format: (area-code) prefix - lineNumber
+    'firstName': 'IAN',
+    'lastName': 'MCEWAN',
+    'birthMonth': '06',
+    'birthDay': '21',
+    'birthYear': '1948',
+    'dl_number': 'Y1234567',
+    'areaCode': '999',
+    'telPrefix': '123',
+    'telSuffix': '4567',
+    'numDays': '14' #If the bot finds an appointment within numDays days, it will schedule the appointment; otherwise, it'll just record it and send to Slack
+    # format: (area-code) telPrefix-telSuffix
 }
+
 ```
 Run the bot.
 ```
@@ -77,3 +76,6 @@ wget http://chromedriver.storage.googleapis.com/2.23/chromedriver_mac64.zip
 unzip chromedriver_mac64.zip
 rm chromedriver_mac64.zip
 ```
+
+## Notes
+* If you already have an appointment scheduled, this bot will override the appointment! If you've already booked an appointment, you should make sure to set `numDays` correctly so that you can find a closer appointment than your current one. 
