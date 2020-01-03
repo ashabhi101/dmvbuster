@@ -82,7 +82,8 @@ Occasionally, there will be a Selenium error not covered by these three cases. I
 * If you already have an appointment scheduled, this bot will override the appointment! If you've already booked an appointment, you should make sure to set `numDays` correctly so that you can find a closer appointment than your current one. 
 * I tried running this in headless ChromeDriver, but headless ChromeDriver doesn't support extensions like Buster, which is critical for solving reCaptcha. 
 * Debugging tips: use the logs. Also, Selenium has a handy screenshot function - use `driver.save_screenshot('debugging.png')`. 
-* Open an issue if you are encountering difficulties and I will do my best to help you solve it.
 
 #### Usage
 This should only be used for personal purposes, not commercial activities. This program's intent is to help individual people book more convenient appointments that other people have canceled. This is not a hack; it simply automates the manual process of checking offices.
+
+I hope you find this helpful! Please let me know if you're having problems getting this to work by raising an issue; I'll do my best to help.
