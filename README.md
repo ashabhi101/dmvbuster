@@ -1,6 +1,6 @@
 # DMV Buster
 
-![demo](https://raw.githubusercontent.com/jerrylin3321/dmvbuster/demo-final.gif)
+![demo](https://github.com/jerrylin3321/dmvbuster/blob/master/demo-final.gif)
 
 This is a fork of [Stalk-the-DMV](https://github.com/thisisandreeeee/stalk-the-DMV). 
 
