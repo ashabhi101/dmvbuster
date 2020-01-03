@@ -12,8 +12,6 @@ New Features:
 * Bypasses reCaptcha
 * If the appointment is within `numDays` (you can adjust this in `settings.py`), the bot will schedule the appointment for you.
 * Saves an appointment confirmation screenshot as `appt_confirmation.png` and registers your phone number for appointment notifications from the DMV.
-
-Existing Features: 
 * Found appointments will be stored in an SQLite databse if it's not already stored in the database and sent to your Slack channel. 
 * Moreover, the bot will recognize if the earliest appointment for a specific DMV office is within 14 days, and tag the users within the slack channel to bring the information immediately to attention. 
 * All actions within the script are being logged, which makes it extremely easy to debug in the case that something goes awry.
