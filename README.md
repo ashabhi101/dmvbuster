@@ -1,7 +1,8 @@
 # DMV Buster
 
+![demo](https://raw.githubusercontent.com/jerrylin3321/dmvbuster/demo-final.gif)
+
 This is a fork of [Stalk-the-DMV](https://github.com/thisisandreeeee/stalk-the-DMV). 
-![demo](https://raw.githubusercontent.com/thisisandreeeee/stalk-the-DMV/master/demo.gif)
 
 I'm a college student trying to grab an appointment for a behind-the-wheel test. Unfortunately, appointments are literally booked out three months in advance. There are occasional openings when someone cancels, but these are hard to find and usually snatched up instantly. I went looking for bots online to automate this appointment search for me, but none of them work ever since the DMV deployed a ReCaptcha on the appointment finder page. 
 
