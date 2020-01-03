@@ -67,13 +67,13 @@ python main.py
 The bot uses Selenium, an automated testing Python library. It iterates through the list of DMV locations given, searching one location every 120 seconds and checking if there are any appointments at the specified location. If there are, it will log this in a database, and send it to a Slack channel. If the appointment is within `numDays`, the bot will schedule it for you, enter your phone number in to receive appointment reminders, and take a screenshot `appt_confirmation.png`. 
 
 #### How does it solve Captchas?
-It uses Buster, a Chrome extension, to bypass the reCaptcha. Buster uses speech-to-text algorithms to translate the audio reCaptcha into text. However, reCaptcha has algorithms in place that somehow detect the use of Buster. There are two errors that may occur:
+It uses Buster, a Chrome extension, to bypass the reCaptcha. Buster uses speech-to-text algorithms to translate the audio reCaptcha into text. However, reCaptcha has algorithms in place that somehow detect the use of Buster. There are three errors you might encounter:
 
-1. It asks you to solve multiple audio captchas. It will say "Multiple solutions required."
-2. It will tell you that it's detected automated queries from your computer. 
+1. ReCaptcha asks you to solve multiple audio captchas. It will say "Multiple solutions required."
+2. ReCaptcha will tell you that it has detected automated queries from your computer. 
 3. It will tell you that it is "unable to connect to reCaptcha." 
 
-These are normal. For the first error, the bot will use Buster to solve another reCaptcha. Upon encountering the second or third error, the bot will simply exit the reCaptcha and reattempt a new reCaptcha. The bot will continue to do this until you've successfully reached the appointment finder page. This process may take upwards of 10+ tries, but eventually, reCaptcha will allow you to access the next page. 
+These are normal. For the first error, the bot will use Buster to solve another reCaptcha. Upon encountering the second or third error, the bot will simply exit the reCaptcha and reattempt a new reCaptcha. The bot will continue to do this until you've successfully reached the appointment finder page. This process may take a while, but eventually, reCaptcha will allow you to access the next page. 
 
 Occasionally, there will be a Selenium error not covered by these three cases. In this case, the bot will simply quit this iteration and, after 120 seconds, restart and search the next location.
 

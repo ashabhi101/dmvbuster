@@ -14,7 +14,7 @@ PROFILE = {
     'areaCode': '999',
     'telPrefix': '123',
     'telSuffix': '4567',
-    'numDays': '14' #If the bot finds an appointment within numDays days, it will schedule the appointment; otherwise, it'll just record it and send to Slack
+    'numDays': '14', #If the bot finds an appointment within numDays days, it will schedule the appointment; otherwise, it'll just record it and send to Slack
     'sleepBetweenAppt': 120
     # format: (area-code) telPrefix-telSuffix
 }
