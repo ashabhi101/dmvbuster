@@ -8,7 +8,7 @@ I'm a college student trying to grab an appointment for a behind-the-wheel test.
 
 To solve this, I integrated the automated captcha-solving extension [Buster](https://github.com/dessant/buster) with [Stalk-the-DMV](https://github.com/thisisandreeeee/stalk-the-DMV), and added an automatic appointment scheduling feature. This bot will search through a list of DMV offices, logging down available appointments, and if an appointment is within a specified number of days, it'll automatically schedule it for you.
 
-New Features:
+Features:
 * Bypasses reCaptcha
 * If the appointment is within `numDays` (you can adjust this in `settings.py`), the bot will schedule the appointment for you.
 * Saves an appointment confirmation screenshot as `appt_confirmation.png` and registers your phone number for appointment notifications from the DMV.
